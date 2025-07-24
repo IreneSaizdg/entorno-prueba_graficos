@@ -1,5 +1,6 @@
 import React from "react";
-import BarChart from "./components/graphic";
+import { BarChart } from "./components/graphic";
+
 
 
 function App() {
