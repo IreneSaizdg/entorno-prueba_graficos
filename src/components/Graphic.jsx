@@ -9,6 +9,8 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
+
+
 // Registrar los componentes de Chart.js
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -20,7 +22,7 @@ export const BarChart = () => {
     const mockData = [
       {
         nombre: "Inspección Insectos",
-        porcentaje: "25.0000000000000000",
+        porcentaje: "100.0000000000000000",
         valor: 1,
       },
       {
@@ -59,11 +61,17 @@ export const BarChart = () => {
       labels,
       datasets: [
         {
-          label: "Porcentaje",
-          data: values,
-          backgroundColor: "rgba(75, 192, 192, 0.6)",
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 1,
+            label: "Porcentaje",
+            data: values,
+            backgroundColor: [
+                "rgba(75, 192, 192, 0.6)",
+                "rgba(192, 173, 75, 0.6)"
+            ], 
+            borderColor: [
+                "rgba(75, 192, 192, 1)",
+                "rgba(192, 192, 75, 1)"
+            ],
+            borderWidth: 1,
         },
       ],
     });
@@ -72,21 +80,22 @@ export const BarChart = () => {
   if (!chartData) return <p>Cargando gráfico...</p>;
 
   return (
-    <div style={{ maxWidth: "600px", margin: "2rem auto" }}>
-      <Bar
-        data={chartData}
-        options={{
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                callback: (value) => value + "%",
-              },
+    <div>
+        {/* style={{ maxWidth: "600px", margin: "2rem auto" }} */}
+        <Bar
+            data={chartData}
+            options={{
+            responsive: true,
+            scales: {
+                y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: (value) => value + "%",
+                },
+                },
             },
-          },
-        }}
-      />
+            }}
+        />
     </div>
   );
 };
